@@ -20,7 +20,9 @@ public class PlayerController : MonoBehaviour {
         bool Jump = Input.GetKeyDown(KeyCode.Space);
         bool attacking = Input.GetKeyDown(KeyCode.F);
 
-        movement.SetValues(inputMoveRight, inputMoveLeft, Jump, attacking);
+        bool bloodAttack = Input.GetKeyDown(KeyCode.D);
+        
+        movement.SetValues(inputMoveRight, inputMoveLeft, Jump, attacking, bloodAttack);
         
     }
     

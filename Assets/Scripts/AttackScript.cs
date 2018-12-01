@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackScript : MonoBehaviour {
 
     [SerializeField]
-    float Damage;
+    int Damage;
 
     [SerializeField]
     GameObject Owner;

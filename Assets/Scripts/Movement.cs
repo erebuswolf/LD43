@@ -24,30 +24,37 @@ public class Movement : MonoBehaviour {
 
     Rigidbody2D myBody;
 
+    BloodManager bloodmanager;
+
     bool inputMoveRight;
     bool inputMoveLeft;
     bool Jump;
     bool grounded;
     bool attacking;
+    bool bloodAttack;
 
     // Use this for initialization
     void Start() {
         myBody = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
+        bloodmanager = this.GetComponent<BloodManager>();
     }
 
-    public void SetValues(bool inputMoveRight, bool inputMoveLeft, bool Jump, bool attacking) {
+    public void SetValues(bool inputMoveRight, bool inputMoveLeft, bool Jump, bool attacking, bool bloodAttack = false) {
         this.inputMoveRight = inputMoveRight;
         this.inputMoveLeft = inputMoveLeft;
         this.Jump |= Jump;
         this.attacking |= attacking;
+        this.bloodAttack |= bloodAttack;
     }
 
     // Update is called once per frame
     void Update() {
         // Logic to determine AI actions
-
-        if (attacking) {
+        if (bloodAttack && bloodmanager.TryToSpendBlood(30)) {
+            animator.SetTrigger("BloodAttack");
+            bloodAttack = false;
+        } else if (attacking) {
             animator.SetTrigger("Attack");
             attacking = false;
         }

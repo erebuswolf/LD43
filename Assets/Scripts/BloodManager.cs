@@ -23,7 +23,13 @@ public class BloodManager : MonoBehaviour {
         if (CurrentBloodAmount > bloodVialCount * 100) {
             CurrentBloodAmount = bloodVialCount * 100;
         }
-
+        UpdateUI();
+        return true;
+    }
+    private void UpdateUI() {
+        if (OnAI) {
+            return;
+        }
         int uiAmount = CurrentBloodAmount;
         if (uiAmount > 100) {
             uiAmount = CurrentBloodAmount % 100;
@@ -34,12 +40,12 @@ public class BloodManager : MonoBehaviour {
         if (!OnAI) {
             bloodUI.SetBloodValue(uiAmount);
         }
-        return true;
     }
 
     public bool TryToSpendBlood(int amount) {
         if (CurrentBloodAmount >= amount) {
             CurrentBloodAmount -= amount;
+            UpdateUI();
             return true;
         }
         return false;
