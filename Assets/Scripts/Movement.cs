@@ -40,7 +40,7 @@ public class Movement : MonoBehaviour {
         bloodmanager = this.GetComponent<BloodManager>();
     }
 
-    public void SetValues(bool inputMoveRight, bool inputMoveLeft, bool Jump, bool attacking, bool bloodAttack = false) {
+    public void SetValues(bool inputMoveRight, bool inputMoveLeft, bool Jump, bool attacking = false, bool bloodAttack = false) {
         this.inputMoveRight = inputMoveRight;
         this.inputMoveLeft = inputMoveLeft;
         this.Jump |= Jump;
@@ -51,8 +51,12 @@ public class Movement : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         // Logic to determine AI actions
-        if (bloodAttack && bloodmanager.TryToSpendBlood(30)) {
-            animator.SetTrigger("BloodAttack");
+        if (bloodAttack) {
+            if(bloodmanager.TryToSpendBlood(30)) {
+                animator.SetTrigger("BloodAttack");
+            } else {
+                // Trigger not enough blood sound.
+            }
             bloodAttack = false;
         } else if (attacking) {
             animator.SetTrigger("Attack");

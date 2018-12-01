@@ -35,6 +35,5 @@ public class HealthBar : MonoBehaviour {
         } else {
             sr.sprite = sprites[val - 1];
         }
-
     }
 }
