@@ -9,11 +9,23 @@ public class BloodManager : MonoBehaviour {
     [SerializeField]
     int CurrentBloodAmount = 0;
 
+    BloodUI bloodUI;
+
     public void CollectBlood(int amount) {
         CurrentBloodAmount += amount;
         if (CurrentBloodAmount > bloodVialCount * 100) {
             CurrentBloodAmount = bloodVialCount * 100;
         }
+
+        int uiAmount = CurrentBloodAmount;
+        if (uiAmount > 100) {
+            uiAmount = CurrentBloodAmount % 100;
+            if (uiAmount == 0) {
+                uiAmount = 100;
+            }
+        }
+
+        bloodUI.SetBloodValue(uiAmount);
     }
 
     public bool TryToSpendBlood(int amount) {
@@ -34,8 +46,9 @@ public class BloodManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        bloodUI = FindObjectOfType<BloodUI>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
