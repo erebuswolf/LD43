@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour {
         movement = this.GetComponent<Movement>();
     }
 	
+    public void Damaged() {
+
+    }
+
 	// Update is called once per frame
 	void Update () {
         bool inputMoveRight = Input.GetKey(KeyCode.RightArrow);
@@ -20,5 +24,8 @@ public class PlayerController : MonoBehaviour {
         
     }
     
+    public void Death() {
+        Debug.LogWarning("you died!");
+    }
 
 }

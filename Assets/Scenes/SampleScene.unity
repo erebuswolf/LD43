@@ -954,6 +954,7 @@ GameObject:
   - component: {fileID: 702619458}
   - component: {fileID: 702619463}
   - component: {fileID: 702619464}
+  - component: {fileID: 702619465}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -1081,6 +1082,18 @@ MonoBehaviour:
   WALK_FORCE: 10
   JUMP_FORCE: 200
   GroundCheck: {fileID: 1825031329}
+--- !u!114 &702619465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 702619457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b43845baed0934597d119cfff75459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 6
 --- !u!1001 &978820886
 Prefab:
   m_ObjectHideFlags: 0
@@ -1894,7 +1907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1825031328}
   - component: {fileID: 1825031329}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

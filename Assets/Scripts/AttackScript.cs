@@ -10,12 +10,14 @@ public class AttackScript : MonoBehaviour {
     [SerializeField]
     GameObject Owner;
 
+    LinkedList<GameObject> DamagedObjects = new LinkedList<GameObject>();
+
 	// Use this for initialization
 	void Start () {
     }
 
     private void OnEnable() {
-
+        DamagedObjects.Clear();
     }
 
     // Update is called once per frame
@@ -24,14 +26,14 @@ public class AttackScript : MonoBehaviour {
 	}
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject == Owner) {
+        if(other.gameObject == Owner && !DamagedObjects.Contains(other.transform.root.gameObject)) {
             return;
         }
-
         //ApplyAttack
         Health health = other.GetComponentInParent<Health>();
         if (health) {
             health.ApplyDamage(Damage);
+            DamagedObjects.AddLast(other.transform.root.gameObject);
         }
     }
 }

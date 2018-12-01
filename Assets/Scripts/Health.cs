@@ -8,6 +8,8 @@ public class Health : MonoBehaviour {
     float CurrentHealth;
     
     public void ApplyDamage(float Damage) {
+
+        SendMessageUpwards("Damaged", SendMessageOptions.DontRequireReceiver);
         CurrentHealth -= Damage;
         if (CurrentHealth <= 0) {
             TriggerDeath();
@@ -15,7 +17,7 @@ public class Health : MonoBehaviour {
     }
 
     public void TriggerDeath() {
-        SendMessageUpwards("Death");
+        SendMessageUpwards("Death", SendMessageOptions.DontRequireReceiver);
     }
 
 	// Use this for initialization

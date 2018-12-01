@@ -20,7 +20,7 @@ public class MyFollowScript : MonoBehaviour {
     void Update() {
         if (target) {
 
-            Vector3 posNoZ = transform.position + offset;
+   //         Vector3 posNoZ = transform.position + offset;
    //         Vector3 targetDirection = (target.transform.position - posNoZ);
             
 

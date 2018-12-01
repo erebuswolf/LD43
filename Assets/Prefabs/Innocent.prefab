@@ -74,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4231511663450232}
   - component: {fileID: 61438299075272058}
-  m_Layer: 9
+  m_Layer: 15
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
