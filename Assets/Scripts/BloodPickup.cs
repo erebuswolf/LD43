@@ -22,6 +22,7 @@ public class BloodPickup : MonoBehaviour {
     public void ActivateBloodPickup() {
         this.enabled = true;
         trigger.enabled = true;
+        Debug.LogWarning("blood pickupable");
     }
 
     private void PickupCheck(Collider2D other) {

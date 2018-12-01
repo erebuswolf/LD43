@@ -2,11 +2,8 @@
 
 public class PlayerController : MonoBehaviour {
     const float MAX_VEL = 50;
-
     const float MAX_XVEL = 2;
-
     const float WALK_FORCE = 10;
-
     const float JUMP_FORCE = 200;
 
     bool FacingRight = true;
@@ -60,8 +57,10 @@ public class PlayerController : MonoBehaviour {
             myBody.AddForce(new Vector2(-WALK_FORCE, 0));
             FacingRight = false;
         }
-        if (Jump && grounded) {
-            myBody.AddForce(new Vector2(0, JUMP_FORCE));
+        if (Jump ) {
+            if (grounded) {
+                myBody.AddForce(new Vector2(0, JUMP_FORCE));
+            }
             Jump = false;
         }
 

@@ -10,11 +10,8 @@ public class AttackScript : MonoBehaviour {
     [SerializeField]
     GameObject Owner;
 
-    BoxCollider2D collision;
-
 	// Use this for initialization
 	void Start () {
-        collision = GetComponent<BoxCollider2D>();
     }
 
     private void OnEnable() {
