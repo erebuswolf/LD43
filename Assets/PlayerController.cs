@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     const float MAX_VEL = 50;
@@ -34,19 +32,27 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         inputMoveRight = Input.GetKey(KeyCode.RightArrow);
         inputMoveLeft = Input.GetKey(KeyCode.LeftArrow);
+        if( Input.GetKeyDown(KeyCode.Space)) {
+            Jump = true;
+        }
 
-        grounded = GroundCheck.IsTouchingLayers(LayerMask.GetMask("Level"));
-
-        Jump = Input.GetKeyDown(KeyCode.Space);
-
-        attacking = Input.GetKeyDown(KeyCode.F);
+        if(Input.GetKeyDown(KeyCode.F)) {
+            attacking = true;
+        }
 
         if (attacking) {
             animator.SetTrigger("Attack");
+            attacking = false;
         }
+    }
 
+    private void FixedUpdate() {
+
+        grounded = GroundCheck.IsTouchingLayers(LayerMask.GetMask("Level"));
+        
         if (inputMoveRight) {
             myBody.AddForce(new Vector2(WALK_FORCE, 0));
             FacingRight = true;
@@ -56,13 +62,14 @@ public class PlayerController : MonoBehaviour {
         }
         if (Jump && grounded) {
             myBody.AddForce(new Vector2(0, JUMP_FORCE));
+            Jump = false;
         }
 
         if (myBody.velocity.magnitude > MAX_VEL) {
             myBody.velocity = myBody.velocity.normalized * MAX_VEL;
         }
 
-        if (Mathf.Abs( myBody.velocity.x) > MAX_XVEL) {
+        if (Mathf.Abs(myBody.velocity.x) > MAX_XVEL) {
             myBody.velocity = new Vector2(Mathf.Sign(myBody.velocity.x) * MAX_XVEL, myBody.velocity.y);
         }
         if (!FacingRight) {
@@ -70,7 +77,6 @@ public class PlayerController : MonoBehaviour {
         } else {
             this.transform.localScale = new Vector3(1, 1, 1);
         }
-    
     }
-    
+
 }
