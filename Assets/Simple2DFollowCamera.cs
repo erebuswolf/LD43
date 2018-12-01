@@ -6,7 +6,7 @@ public class Simple2DFollowCamera : MonoBehaviour {
     public float speed = 15f;
     public float minDistanceX;
     public float minDistanceY;
-
+    
     public GameObject target;
     public Vector3 offset;
 
@@ -29,7 +29,10 @@ public class Simple2DFollowCamera : MonoBehaviour {
 
             applyMask.Scale(targetDirection.normalized * interpVelocity * Time.deltaTime);
             targetPos = (transform.position) + applyMask;
-            transform.position = Vector3.Lerp(transform.position, targetPos, 0.25f);
+
+            float lerpAmount = 0.25f;
+            
+            transform.position = Vector3.Lerp(transform.position, targetPos, lerpAmount);
 
         }
     }
