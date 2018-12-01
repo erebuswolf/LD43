@@ -30,7 +30,9 @@ public class BloodPickup : MonoBehaviour {
         }
         BloodManager manager = other.GetComponentInParent<BloodManager>();
         if (manager && !pickedup) {
-            manager.CollectBlood(amount);
+            if (!manager.CollectBlood(amount)) {
+                return;
+            }
             pickedup = true;
             SendMessageUpwards("BloodPickedUp");
         }

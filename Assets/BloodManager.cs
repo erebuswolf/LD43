@@ -11,7 +11,11 @@ public class BloodManager : MonoBehaviour {
 
     BloodUI bloodUI;
 
-    public void CollectBlood(int amount) {
+    public bool CollectBlood(int amount) {
+        if(CurrentBloodAmount == bloodVialCount * 100) {
+            return false;
+        }
+
         CurrentBloodAmount += amount;
         if (CurrentBloodAmount > bloodVialCount * 100) {
             CurrentBloodAmount = bloodVialCount * 100;
@@ -26,6 +30,7 @@ public class BloodManager : MonoBehaviour {
         }
 
         bloodUI.SetBloodValue(uiAmount);
+        return true;
     }
 
     public bool TryToSpendBlood(int amount) {
