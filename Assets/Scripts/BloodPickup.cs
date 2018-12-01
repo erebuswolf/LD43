@@ -19,6 +19,10 @@ public class BloodPickup : MonoBehaviour {
 		
 	}
 
+    public bool PickedUp() {
+        return pickedup;
+    }
+
     public void ActivateBloodPickup() {
         this.enabled = true;
         trigger.enabled = true;

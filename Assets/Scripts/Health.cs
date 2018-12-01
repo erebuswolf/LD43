@@ -13,7 +13,7 @@ public class Health : MonoBehaviour {
     HealthBar healthBar;
     
     
-    public void ApplyDamage(int Damage) {
+    public void ApplyDamage(int Damage, Vector3 position) {
         if (CurrentDarkHealth > 0) {
             CurrentDarkHealth -= Damage;
             if (CurrentDarkHealth < 0) {
@@ -28,8 +28,10 @@ public class Health : MonoBehaviour {
             }
         }
 
-        SendMessageUpwards("Damaged", SendMessageOptions.DontRequireReceiver);
-        healthBar.SetHealth(CurrentHealth, CurrentDarkHealth);
+        SendMessageUpwards("Damaged", position,SendMessageOptions.DontRequireReceiver);
+        if (healthBar) {
+            healthBar.SetHealth(CurrentHealth, CurrentDarkHealth);
+        }
     }
     
     public void HealHealth(int Heal) {
@@ -44,8 +46,9 @@ public class Health : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         healthBar = GetComponentInChildren<HealthBar>();
-
-        healthBar.SetHealth(CurrentHealth, CurrentDarkHealth);
+        if (healthBar) {
+            healthBar.SetHealth(CurrentHealth, CurrentDarkHealth);
+        }
     }
 	
 	// Update is called once per frame

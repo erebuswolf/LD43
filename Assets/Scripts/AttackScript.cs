@@ -32,7 +32,7 @@ public class AttackScript : MonoBehaviour {
         //ApplyAttack
         Health health = other.GetComponentInParent<Health>();
         if (health) {
-            health.ApplyDamage(Damage);
+            health.ApplyDamage(Damage, this.transform.root.position);
             DamagedObjects.AddLast(other.transform.root.gameObject);
         }
     }

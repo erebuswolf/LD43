@@ -37,7 +37,9 @@ public class MonsterAI : AiControllerBase {
         if (!Target) {
             return;
         }
-        if (Eps > Mathf.Abs(Target.transform.position.x - this.transform.position.x) && movement.isFacingRight() == (Target.transform.position.x - this.transform.position.x) > 0) {
+        if (Eps > Mathf.Abs(Target.transform.position.x - this.transform.position.x)
+            && movement.isFacingRight() == (Target.transform.position.x - this.transform.position.x) > 0 && 
+            !Target.GetComponent<KillableActor>().isDead()) {
             movement.SetValues(false, false, false, true);
         } else {
             bool moveleft = (Target.transform.position.x - this.transform.position.x) < 0;
@@ -57,7 +59,7 @@ public class MonsterAI : AiControllerBase {
             }
 
             var killable = go.GetComponentInParent<KillableActor>();
-            if (killable && !killable.isDead()) {
+            if (killable && (!killable.isDead() || !killable.gameObject.GetComponentInChildren<BloodPickup>().PickedUp())) {
                 if (closest) {
                     float dist = (killable.transform.position - transform.position).sqrMagnitude;
                     if (closestDist >dist) {

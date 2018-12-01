@@ -17,8 +17,10 @@ public class KillableActor : MonoBehaviour {
 		
 	}
 
-    public void Death() {
-        animator.SetTrigger("Death");
+    public virtual void Death() {
+        if (animator) {
+            animator.SetTrigger("Death");
+        }
         dead = true;
     }
     

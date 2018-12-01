@@ -4,7 +4,8 @@ public class PlayerController : KillableActor {
     Movement movement;
     
     // Use this for initialization
-    void Start () {
+    new void Start () {
+        base.Start();
         movement = this.GetComponent<Movement>();
     }
 	
@@ -24,11 +25,4 @@ public class PlayerController : KillableActor {
         movement.SetValues(inputMoveRight, inputMoveLeft, Jump, attacking, bloodAttack);
         
     }
-    
-    public void Death() {
-        dead = true;
-        Debug.LogWarning("you died!");
-    }
-
-
 }

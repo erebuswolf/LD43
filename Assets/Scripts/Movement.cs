@@ -20,6 +20,16 @@ public class Movement : MonoBehaviour {
     [SerializeField]
     BoxCollider2D GroundCheck;
 
+    [SerializeField]
+    BoxCollider2D JumpCheck;
+
+    [SerializeField]
+    float JumpCD;
+
+    private float LastJumpTime;
+    
+    bool Dead;
+
     Animator animator;
 
     Rigidbody2D myBody;
@@ -41,10 +51,24 @@ public class Movement : MonoBehaviour {
         animator = this.GetComponent<Animator>();
         bloodmanager = this.GetComponent<BloodManager>();
     }
+
+    public void Death() {
+        Dead = true;
+    }
     
+    public void Damaged(Vector3 position) {
+        if(!Dead) {
+            myBody.AddForce((this.transform.position - position).normalized * 100);
+        }
+    }
 
     public void StopAttack() {
         AttackAnimation = false;
+        attacking = false;
+    }
+    
+    public void StartAttack() {
+        AttackAnimation = true;
     }
 
     public void SetValues(bool inputMoveRight, bool inputMoveLeft, bool Jump, bool attacking = false, bool bloodAttack = false) {
@@ -52,11 +76,18 @@ public class Movement : MonoBehaviour {
         this.inputMoveLeft = inputMoveLeft;
         this.Jump |= Jump;
         this.attacking |= attacking;
+        if (AttackAnimation) {
+            this.attacking = false;
+        }
         this.bloodAttack |= bloodAttack;
     }
 
     // Update is called once per frame
     void Update() {
+
+        if (Dead) {
+            return;
+        }
         // Logic to determine AI actions
         if (bloodAttack) {
             if (bloodmanager.TryToSpendBlood(30)) {
@@ -78,12 +109,20 @@ public class Movement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        if (Dead) {
+            return;
+        }
         grounded = GroundCheck.IsTouchingLayers(LayerMask.GetMask("Level"));
 
         if (AttackAnimation) {
             return;
         }
 
+        bool shouldJump = false;
+        if (JumpCheck) {
+            shouldJump  = JumpCheck.IsTouchingLayers(LayerMask.GetMask("Level"));
+        }
+        
         if (inputMoveRight) {
             myBody.AddForce(new Vector2(WALK_FORCE, 0));
             FacingRight = true;
@@ -91,8 +130,9 @@ public class Movement : MonoBehaviour {
             myBody.AddForce(new Vector2(-WALK_FORCE, 0));
             FacingRight = false;
         }
-        if (Jump) {
+        if (Jump || shouldJump && LastJumpTime + JumpCD < Time.time) {
             if (grounded) {
+                LastJumpTime = Time.time;
                 myBody.AddForce(new Vector2(0, JUMP_FORCE));
             }
             Jump = false;
