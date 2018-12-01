@@ -33,11 +33,18 @@ public class Movement : MonoBehaviour {
     bool attacking;
     bool bloodAttack;
 
+    bool AttackAnimation;
+
     // Use this for initialization
     void Start() {
         myBody = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
         bloodmanager = this.GetComponent<BloodManager>();
+    }
+    
+
+    public void StopAttack() {
+        AttackAnimation = false;
     }
 
     public void SetValues(bool inputMoveRight, bool inputMoveLeft, bool Jump, bool attacking = false, bool bloodAttack = false) {
@@ -52,21 +59,30 @@ public class Movement : MonoBehaviour {
     void Update() {
         // Logic to determine AI actions
         if (bloodAttack) {
-            if(bloodmanager.TryToSpendBlood(30)) {
+            if (bloodmanager.TryToSpendBlood(30)) {
+                AttackAnimation = true;
                 animator.SetTrigger("BloodAttack");
             } else {
                 // Trigger not enough blood sound.
             }
             bloodAttack = false;
         } else if (attacking) {
+            AttackAnimation = true;
             animator.SetTrigger("Attack");
             attacking = false;
         }
     }
 
-    private void FixedUpdate() {
+    public bool isFacingRight() {
+        return FacingRight;
+    }
 
+    private void FixedUpdate() {
         grounded = GroundCheck.IsTouchingLayers(LayerMask.GetMask("Level"));
+
+        if (AttackAnimation) {
+            return;
+        }
 
         if (inputMoveRight) {
             myBody.AddForce(new Vector2(WALK_FORCE, 0));

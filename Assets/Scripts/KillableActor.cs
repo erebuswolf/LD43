@@ -25,4 +25,8 @@ public class KillableActor : MonoBehaviour {
     public void BloodPickedUp() {
         animator.SetTrigger("BloodPickedUp");
     }
+
+    public bool isDead() {
+        return dead;
+    }
 }

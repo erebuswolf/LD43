@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4239122215414670}
   - component: {fileID: 212272550610105470}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4218676958202332}
   - component: {fileID: 114092965425220454}
   - component: {fileID: 212099084265686474}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4876648979024986}
   - component: {fileID: 212654723061167510}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: DarkHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4182229545726034}
   - component: {fileID: 114551784306014822}
-  m_Layer: 9
+  m_Layer: 17
   m_Name: NoScaleReversal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,8 @@ GameObject:
   - component: {fileID: 95458494702397270}
   - component: {fileID: 114181275836817354}
   - component: {fileID: 114746892005753710}
-  m_Layer: 11
+  - component: {fileID: 114507209583071148}
+  m_Layer: 17
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +156,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1766405156853248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.265, y: 1.817451, z: -0.05859375}
+  m_LocalPosition: {x: 14.2, y: 0.86, z: -0.05859375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4239122215414670}
@@ -477,6 +478,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 30
   trigger: {fileID: 61344352164456994}
+--- !u!114 &114507209583071148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1766405156853248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13bfbff8e4b9aed4d93e2e56be6b2bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivationDistance: 5
+  AggroRange: 5
+  Eps: 1.1
 --- !u!114 &114551784306014822
 MonoBehaviour:
   m_ObjectHideFlags: 1

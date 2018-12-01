@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : KillableActor {
     Movement movement;
-    
     
     // Use this for initialization
     void Start () {
@@ -27,7 +26,9 @@ public class PlayerController : MonoBehaviour {
     }
     
     public void Death() {
+        dead = true;
         Debug.LogWarning("you died!");
     }
+
 
 }

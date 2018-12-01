@@ -12,10 +12,16 @@ public class BloodManager : MonoBehaviour {
     [SerializeField]
     bool OnAI;
 
+    bool dead;
+
     BloodUI bloodUI;
 
+    public void Death() {
+        dead = true;
+    }
+
     public bool CollectBlood(int amount) {
-        if(CurrentBloodAmount == bloodVialCount * 100) {
+        if(CurrentBloodAmount == bloodVialCount * 100 || dead) {
             return false;
         }
 
@@ -26,6 +32,7 @@ public class BloodManager : MonoBehaviour {
         UpdateUI();
         return true;
     }
+
     private void UpdateUI() {
         if (OnAI) {
             return;
