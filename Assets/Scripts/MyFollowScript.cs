@@ -21,7 +21,7 @@ public class MyFollowScript : MonoBehaviour {
         if (target) {
 
             Vector3 posNoZ = transform.position + offset;
-            Vector3 targetDirection = (target.transform.position - posNoZ);
+   //         Vector3 targetDirection = (target.transform.position - posNoZ);
             
 
             Vector3 goal = target.transform.position + offset;

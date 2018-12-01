@@ -9,6 +9,9 @@ public class BloodManager : MonoBehaviour {
     [SerializeField]
     int CurrentBloodAmount = 0;
 
+    [SerializeField]
+    bool OnAI;
+
     BloodUI bloodUI;
 
     public bool CollectBlood(int amount) {
@@ -28,8 +31,9 @@ public class BloodManager : MonoBehaviour {
                 uiAmount = 100;
             }
         }
-
-        bloodUI.SetBloodValue(uiAmount);
+        if (!OnAI) {
+            bloodUI.SetBloodValue(uiAmount);
+        }
         return true;
     }
 
@@ -51,7 +55,9 @@ public class BloodManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        bloodUI = FindObjectOfType<BloodUI>();
+        if (!OnAI) {
+            bloodUI = FindObjectOfType<BloodUI>();
+        }
 
     }
 	

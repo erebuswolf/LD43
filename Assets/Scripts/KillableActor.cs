@@ -5,6 +5,7 @@ using UnityEngine;
 public class KillableActor : MonoBehaviour {
     
     protected Animator animator;
+    protected bool dead;
 
     // Use this for initialization
     protected void Start () {
@@ -18,6 +19,7 @@ public class KillableActor : MonoBehaviour {
 
     public void Death() {
         animator.SetTrigger("Death");
+        dead = true;
     }
     
     public void BloodPickedUp() {
