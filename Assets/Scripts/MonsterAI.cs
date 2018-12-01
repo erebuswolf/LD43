@@ -59,15 +59,20 @@ public class MonsterAI : AiControllerBase {
             }
 
             var killable = go.GetComponentInParent<KillableActor>();
-            if (killable && (!killable.isDead() || !killable.gameObject.GetComponentInChildren<BloodPickup>().PickedUp())) {
-                if (closest) {
-                    float dist = (killable.transform.position - transform.position).sqrMagnitude;
-                    if (closestDist >dist) {
+
+            
+            if (killable) {
+                var pickup = killable.gameObject.GetComponentInChildren<BloodPickup>();
+                if (!killable.isDead() || pickup && !pickup.PickedUp()) {
+                    if (closest) {
+                        float dist = (killable.transform.position - transform.position).sqrMagnitude;
+                        if (closestDist > dist) {
+                            closest = killable.gameObject;
+                            closestDist = dist;
+                        }
+                    } else {
                         closest = killable.gameObject;
-                        closestDist = dist;
                     }
-                } else {
-                    closest = killable.gameObject;
                 }
             }
         }

@@ -26,7 +26,8 @@ public class AttackScript : MonoBehaviour {
 	}
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject == Owner && !DamagedObjects.Contains(other.transform.root.gameObject)) {
+        if(other.gameObject == Owner && !DamagedObjects.Contains(other.transform.root.gameObject) ||
+            other.transform.root.gameObject.layer == this.transform.root.gameObject.layer) {
             return;
         }
         //ApplyAttack
