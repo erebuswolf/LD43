@@ -6,6 +6,11 @@ public abstract class Pickup : MonoBehaviour {
 
     protected Animator animator;
 
+    [SerializeField]
+    AudioSource pickupSound;
+
+    bool once;
+
 	// Use this for initialization
 	protected void Start () {
         animator = GetComponentInParent<Animator>();
@@ -19,8 +24,14 @@ public abstract class Pickup : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.transform.root.gameObject.layer == LayerMask.NameToLayer("Player")) {
-            if ( PickupObject(other.GetComponentInParent<PlayerController>())) {
-                animator.SetTrigger("Pickup");
+            if (PickupObject(other.GetComponentInParent<PlayerController>())) {
+                if(!once) {
+                    animator.SetTrigger("Pickup");
+                    if (pickupSound) {
+                        pickupSound.Play();
+                    }
+                    once = true;
+                }
             }
         }
     }

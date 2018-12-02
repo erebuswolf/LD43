@@ -930,17 +930,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1272022099475736, guid: e2caaa0845e56974085ddc2f8e44b02d, type: 2}
       propertyPath: m_Name
-      value: LeftInnocent (3)
+      value: Corpse
       objectReference: {fileID: 0}
     - target: {fileID: 114236674847901990, guid: e2caaa0845e56974085ddc2f8e44b02d,
         type: 2}
       propertyPath: CurrentHealth
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82962278732834882, guid: e2caaa0845e56974085ddc2f8e44b02d,
-        type: 2}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0.923
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2caaa0845e56974085ddc2f8e44b02d, type: 2}
@@ -4067,7 +4062,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1272022099475736, guid: e2caaa0845e56974085ddc2f8e44b02d, type: 2}
       propertyPath: m_Name
-      value: LeftInnocent (1)
+      value: Corpse
       objectReference: {fileID: 0}
     - target: {fileID: 114236674847901990, guid: e2caaa0845e56974085ddc2f8e44b02d,
         type: 2}

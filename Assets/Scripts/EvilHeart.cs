@@ -9,6 +9,7 @@ public class EvilHeart : Pickup {
     bool pickedUp = false;
 
     protected override bool PickupObject(PlayerController player) {
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         if(!pickedUp && player.GetComponentInChildren<Health>().AddDarkHealth(DarkHealth)) {
 
             pickedUp = true;

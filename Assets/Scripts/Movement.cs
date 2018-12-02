@@ -84,6 +84,9 @@ public class Movement : MonoBehaviour {
     }
 
     public void Death() {
+        if(DeathSoundSound && !Dead && Time.timeSinceLevelLoad > 1) {
+            DeathSoundSound.Play();
+        }
         Dead = true;
     }
     

@@ -11,6 +11,9 @@ public class Crate : KillableActor {
 
     [SerializeField]
     SpriteRenderer thisSprite;
+    
+    [SerializeField]
+    AudioSource breakSound;
 
     // Use this for initialization
     new void Start () {
@@ -26,6 +29,7 @@ public class Crate : KillableActor {
         if(dead) {
             return;
         }
+        breakSound.Play();
         base.Death();
 
         if (hiddenObject) {

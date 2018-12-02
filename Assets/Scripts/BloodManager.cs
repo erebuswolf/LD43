@@ -9,6 +9,10 @@ public class BloodManager : MonoBehaviour {
     [SerializeField]
     int CurrentBloodAmount = 0;
 
+
+    [SerializeField]
+    AudioSource bloodpickup;
+
     [SerializeField]
     bool OnAI;
 
@@ -24,7 +28,7 @@ public class BloodManager : MonoBehaviour {
         if(CurrentBloodAmount == bloodVialCount * 100 || dead) {
             return false;
         }
-
+        bloodpickup.Play();
         CurrentBloodAmount += amount;
         if (CurrentBloodAmount > bloodVialCount * 100) {
             CurrentBloodAmount = bloodVialCount * 100;
