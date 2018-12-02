@@ -449,7 +449,7 @@ MonoBehaviour:
   JUMP_FORCE: 200
   GroundCheck: {fileID: 61438299075272058}
   JumpCheck: {fileID: 61826140293824492}
-  JumpCD: 0.5
+  JumpCD: 2
   TeleDist: 0
 --- !u!114 &114236674847901990
 MonoBehaviour:

@@ -62,9 +62,6 @@ public class BossAI : MonoBehaviour {
             return;
         }
 
-        var baseinfo = animator.GetCurrentAnimatorStateInfo(0);
-        var eyeinfo = animator.GetCurrentAnimatorStateInfo(1);
-        var platforminfo = animator.GetCurrentAnimatorStateInfo(2);
 
         switch (bossState) {
             case 0:
@@ -96,8 +93,10 @@ public class BossAI : MonoBehaviour {
                 break;
         }
 
+        var baseinfo = animator.GetCurrentAnimatorStateInfo(0);
+        var platforminfo = animator.GetCurrentAnimatorStateInfo(2);
         // Decide Between Platform raising, enemy summoning, and attacking.
-        if(baseinfo.IsName("bossIdle")) {
+        if (baseinfo.IsName("bossIdle")) {
 
             if (bossState == 0) {
                 
