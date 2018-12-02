@@ -105,16 +105,16 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 64
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fde8efe171cfab4093dc058a20ad959
+      spriteID: cd57c3ec92e12af4291addb232171097
       vertices: []
       indices: 
       edges: []
@@ -123,18 +123,18 @@ TextureImporter:
       name: innocent_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 0
-        width: 32
+        width: 64
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3496c61e1efd8d4282299a86577ca9f
+      spriteID: 009c25d95536c52448e1192bdb51c992
       vertices: []
       indices: 
       edges: []
@@ -143,18 +143,18 @@ TextureImporter:
       name: innocent_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 0
-        width: 32
+        width: 64
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c50ee388d95cd74f91e9130de33a97c
+      spriteID: 0f36703d18af43948afc4a967baf3d84
       vertices: []
       indices: 
       edges: []
@@ -163,18 +163,18 @@ TextureImporter:
       name: innocent_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 192
         y: 0
-        width: 32
+        width: 64
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: beab5b705ad9ce242919220285dc3b61
+      spriteID: eee0bee3f926f5b458a0658e75091fec
       vertices: []
       indices: 
       edges: []
@@ -183,18 +183,18 @@ TextureImporter:
       name: innocent_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 256
         y: 0
-        width: 32
+        width: 64
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97fd7cea8b9e9ff438c9f59162d4fe2b
+      spriteID: 085a5a238abaeae43b7bd387ac2daa09
       vertices: []
       indices: 
       edges: []

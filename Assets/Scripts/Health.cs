@@ -13,6 +13,13 @@ public class Health : MonoBehaviour {
     HealthBar healthBar;
     
     public void ApplyDamage(int Damage, Vector3 position) {
+
+        if (Damage >= 3) {
+            SendMessageUpwards("BigDamaged", position, SendMessageOptions.DontRequireReceiver);
+        } else {
+            SendMessageUpwards("Damaged", position, SendMessageOptions.DontRequireReceiver);
+        }
+
         if (CurrentDarkHealth > 0) {
             CurrentDarkHealth -= Damage;
             if (CurrentDarkHealth < 0) {
@@ -27,12 +34,6 @@ public class Health : MonoBehaviour {
             }
         }
 
-        if(Damage >= 3) {
-            SendMessageUpwards("BigDamaged", position, SendMessageOptions.DontRequireReceiver);
-        } else {
-            SendMessageUpwards("Damaged", position, SendMessageOptions.DontRequireReceiver);
-        }
-        
         if (healthBar) {
             healthBar.SetHealth(CurrentHealth, CurrentDarkHealth);
         }

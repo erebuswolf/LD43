@@ -50,6 +50,8 @@ public class Movement : MonoBehaviour {
 
     bool DoingSomething;
 
+    Vector3 DamageForceToAdd = Vector3.zero;
+
     // Use this for initialization
     void Start() {
         myBody = this.GetComponent<Rigidbody2D>();
@@ -64,14 +66,14 @@ public class Movement : MonoBehaviour {
     public void Damaged(Vector3 position) {
         if(!Dead) {
             animator.SetTrigger("Flinch");
-            myBody.AddForce((this.transform.position - position).normalized * 100);
+            DamageForceToAdd = (this.transform.position - position).normalized * 120;
         }
     }
     
     public void BigDamaged(Vector3 position) {
         if (!Dead) {
             animator.SetTrigger("Flinch");
-            myBody.AddForce((this.transform.position - position).normalized * 200);
+            DamageForceToAdd = (this.transform.position - position).normalized * 200;
         }
     }
 
@@ -156,6 +158,9 @@ public class Movement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        myBody.AddForce(DamageForceToAdd);
+        DamageForceToAdd = Vector3.zero;
+
         if (Dead) {
             return;
         }

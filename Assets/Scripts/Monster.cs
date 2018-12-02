@@ -32,7 +32,6 @@ public class Monster : KillableActor {
         GetComponent<MonsterAI>().Eps = .6f;
 
         var animator = GetComponent<Animator>();
-        animator.SetLayerWeight(1, 1);
         animator.SetTrigger("Transform");
         animator.runtimeAnimatorController = controller;
 
