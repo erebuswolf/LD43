@@ -157,6 +157,10 @@ public class Movement : MonoBehaviour {
         return FacingRight;
     }
 
+    public bool isGrounded() {
+        return grounded;
+    }
+
     private void FixedUpdate() {
         myBody.AddForce(DamageForceToAdd);
         DamageForceToAdd = Vector3.zero;

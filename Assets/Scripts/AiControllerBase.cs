@@ -23,7 +23,7 @@ public class AiControllerBase : MonoBehaviour {
 	// Update is called once per frame
 	protected void Update () {
 		if(!Activated) {
-            if(ActivationDistance == 0 || (player.transform.position - transform.position).sqrMagnitude < ActivationDistance * ActivationDistance) {
+            if(movement.isGrounded() && (ActivationDistance == 0 || (player.transform.position - transform.position).sqrMagnitude < ActivationDistance * ActivationDistance)) {
                 Activated = true;
             }
         }
