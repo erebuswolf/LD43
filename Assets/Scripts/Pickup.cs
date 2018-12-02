@@ -26,4 +26,9 @@ public abstract class Pickup : MonoBehaviour {
     }
 
     abstract protected bool PickupObject(PlayerController player);
+    
+    public void DestroyMe() {
+        this.gameObject.SetActive(false);
+        Destroy(this);
+    }
 }

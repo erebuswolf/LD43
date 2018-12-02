@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EvilHeart : Pickup {
-    [SerializeField]
-    int DarkHealth;
-
+public class VialPickup : Pickup {
     bool pickedUp = false;
-
     protected override bool PickupObject(PlayerController player) {
-        if(!pickedUp && player.GetComponentInChildren<Health>().AddDarkHealth(DarkHealth)) {
-
+        if (!pickedUp && player.GetComponentInChildren<BloodManager>().CollectVial()) {
             pickedUp = true;
             return true;
         }

@@ -46,6 +46,13 @@ public class BloodManager : MonoBehaviour {
         }
         if (!OnAI) {
             bloodUI.SetBloodValue(uiAmount);
+            int fullVialCount;
+            if(CurrentBloodAmount % 100 == 0 && CurrentBloodAmount > 0) {
+                fullVialCount = (CurrentBloodAmount / 100) - 1;
+            } else {
+                fullVialCount = (CurrentBloodAmount / 100);
+            }
+            bloodUI.SetMiniVialCount(bloodVialCount - 1, fullVialCount);
         }
     }
 
@@ -58,8 +65,13 @@ public class BloodManager : MonoBehaviour {
         return false;
     }
 
-    public void CollectVial() {
+    public bool CollectVial() {
+        if (bloodVialCount >4) {
+            return false;
+        }
         bloodVialCount++;
+        UpdateUI();
+        return true;
     }
 
     public int GetVialCount() {
@@ -70,6 +82,7 @@ public class BloodManager : MonoBehaviour {
 	void Start () {
         if (!OnAI) {
             bloodUI = FindObjectOfType<BloodUI>();
+            UpdateUI();
         }
 
     }

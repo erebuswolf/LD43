@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 6c8e3cd403a430d48b04b64fda118c8b
+guid: 5f120c4e7d691134c984603312537613
 TextureImporter:
   fileIDToRecycleName:
-    21300000: vial_0
-    21300002: vial_1
+    21300000: vial-sheet2_0
+    21300002: vial-sheet2_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: vial_0
+      name: vial-sheet2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,13 +111,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: faa8cc634be15c74782162092d7e1829
+      spriteID: ef9ffdf17e267ce4aa3145cffc5148df
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vial_1
+      name: vial-sheet2_1
       rect:
         serializedVersion: 2
         x: 32
@@ -131,7 +131,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a3f003e827dba94cac2bea9cb77069f
+      spriteID: 637afa4f8d3965f4ab81872a3e5b895d
       vertices: []
       indices: 
       edges: []
@@ -139,7 +139,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: cbfed541ae1019240bc78a3de145f704
+    spriteID: bfd8e6b93215dde47b7d0f59afdd4136
     vertices: []
     indices: 
     edges: []

@@ -12,6 +12,15 @@ public class BloodUI : MonoBehaviour {
     [SerializeField]
     float bloodOffset = .02f;
 
+
+    [SerializeField]
+    Sprite emptymini;
+    [SerializeField]
+    Sprite fullmini;
+
+    [SerializeField]
+    List<SpriteRenderer> MiniVials;
+
     List<GameObject> BloodSprites = new List<GameObject>();
 
     // Use this for initialization
@@ -24,6 +33,13 @@ public class BloodUI : MonoBehaviour {
         }
 	}
 	
+    public void SetMiniVialCount(int count, int fullVials) {
+        for(int i = 0; i < MiniVials.Count; i++) {
+            MiniVials[i].enabled = i < count;
+            MiniVials[i].sprite = i < fullVials ? fullmini : emptymini;
+        }
+    }
+
 	// Update is called once per frame
 	void Update () {
 		
