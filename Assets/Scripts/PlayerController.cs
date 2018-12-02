@@ -22,7 +22,10 @@ public class PlayerController : KillableActor {
 
         bool bloodAttack = Input.GetKeyDown(KeyCode.D);
         
-        movement.SetValues(inputMoveRight, inputMoveLeft, Jump, attacking, bloodAttack);
+        bool heal = Input.GetKeyDown(KeyCode.G);
+
+
+        movement.SetValues(inputMoveRight, inputMoveLeft, Jump, attacking, bloodAttack, heal);
         
     }
 }

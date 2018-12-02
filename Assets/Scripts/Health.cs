@@ -12,7 +12,6 @@ public class Health : MonoBehaviour {
 
     HealthBar healthBar;
     
-    
     public void ApplyDamage(int Damage, Vector3 position) {
         if (CurrentDarkHealth > 0) {
             CurrentDarkHealth -= Damage;
@@ -34,9 +33,33 @@ public class Health : MonoBehaviour {
         }
     }
     
+    public void HealSetAmnt() {
+        HealHealth(2);
+    }
+
+    public bool AddDarkHealth(int health) {
+        if (CurrentDarkHealth == 6) {
+            return false;
+        }
+        CurrentDarkHealth += health;
+        if (CurrentDarkHealth > 6) {
+            CurrentDarkHealth = 6;
+        }
+        
+        if (healthBar) {
+            healthBar.SetHealth(CurrentHealth, CurrentDarkHealth);
+        }
+        return true;
+    }
+
     public void HealHealth(int Heal) {
         CurrentHealth += Heal;
-
+        if (CurrentHealth > 6) {
+            CurrentHealth = 6;
+        }
+        if (healthBar) {
+            healthBar.SetHealth(CurrentHealth, CurrentDarkHealth);
+        }
     }
 
     public void TriggerDeath() {
@@ -55,6 +78,4 @@ public class Health : MonoBehaviour {
 	void Update () {
 		
 	}
-
-
 }

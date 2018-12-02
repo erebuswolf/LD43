@@ -42,8 +42,9 @@ public class Movement : MonoBehaviour {
     bool grounded;
     bool attacking;
     bool bloodAttack;
+    bool heal;
 
-    bool AttackAnimation;
+    bool DoingSomething;
 
     // Use this for initialization
     void Start() {
@@ -63,23 +64,26 @@ public class Movement : MonoBehaviour {
     }
 
     public void StopAttack() {
-        AttackAnimation = false;
+        DoingSomething = false;
         attacking = false;
     }
     
     public void StartAttack() {
-        AttackAnimation = true;
+        DoingSomething = true;
     }
 
-    public void SetValues(bool inputMoveRight, bool inputMoveLeft, bool Jump, bool attacking = false, bool bloodAttack = false) {
+    public void SetValues(bool inputMoveRight, bool inputMoveLeft, bool Jump, bool attacking = false, bool bloodAttack = false, bool heal = false) {
         this.inputMoveRight = inputMoveRight;
         this.inputMoveLeft = inputMoveLeft;
         this.Jump |= Jump;
         this.attacking |= attacking;
-        if (AttackAnimation) {
-            this.attacking = false;
-        }
         this.bloodAttack |= bloodAttack;
+        this.heal = heal;
+        if (DoingSomething) {
+            this.attacking = false;
+            this.heal = false;
+            this.bloodAttack = false;
+        }
     }
 
     // Update is called once per frame
@@ -91,16 +95,24 @@ public class Movement : MonoBehaviour {
         // Logic to determine AI actions
         if (bloodAttack) {
             if (bloodmanager.TryToSpendBlood(30)) {
-                AttackAnimation = true;
+                DoingSomething = true;
                 animator.SetTrigger("BloodAttack");
             } else {
                 // Trigger not enough blood sound.
             }
             bloodAttack = false;
         } else if (attacking) {
-            AttackAnimation = true;
+            DoingSomething = true;
             animator.SetTrigger("Attack");
             attacking = false;
+        } else if (heal) {
+            if (bloodmanager.TryToSpendBlood(50)) {
+                DoingSomething = true;
+                animator.SetTrigger("Heal");
+            } else {
+                // Trigger not enough blood sound.
+            }
+            heal = false;
         }
     }
 
@@ -114,7 +126,7 @@ public class Movement : MonoBehaviour {
         }
         grounded = GroundCheck.IsTouchingLayers(LayerMask.GetMask("Level"));
 
-        if (AttackAnimation) {
+        if (DoingSomething) {
             return;
         }
 
