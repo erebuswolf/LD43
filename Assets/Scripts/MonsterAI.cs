@@ -7,10 +7,16 @@ public class MonsterAI : AiControllerBase {
     [SerializeField]
     float AggroRange;
 
+
+    [SerializeField]
     GameObject Target;
 
     [SerializeField]
     float Eps;
+
+
+    float randTime;
+    bool randMoveRight;
 
 	// Use this for initialization
 	new void Start () {
@@ -30,7 +36,20 @@ public class MonsterAI : AiControllerBase {
             return;
         }
         FindTarget();
-        MoveTowardTarget();
+        if(Target) {
+            MoveTowardTarget();
+        } else {
+            MoveRandom();
+        }
+    }
+
+    void MoveRandom() {
+        if (randTime < Time.time) {
+            randMoveRight = Random.Range(0, 2) == 0;
+            randTime = Time.time + Random.value * 2 + 1;
+        }
+
+        movement.SetValues(randMoveRight, !randMoveRight, false, false);
     }
 
     void MoveTowardTarget() {
@@ -59,7 +78,6 @@ public class MonsterAI : AiControllerBase {
             }
 
             var killable = go.GetComponentInParent<KillableActor>();
-
             
             if (killable) {
                 var pickup = killable.gameObject.GetComponentInChildren<BloodPickup>();
