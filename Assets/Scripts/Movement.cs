@@ -25,6 +25,9 @@ public class Movement : MonoBehaviour {
 
     [SerializeField]
     float JumpCD;
+    
+    [SerializeField]
+    float TeleDist;
 
     private float LastJumpTime;
     
@@ -43,6 +46,7 @@ public class Movement : MonoBehaviour {
     bool attacking;
     bool bloodAttack;
     bool heal;
+    bool teleport;
 
     bool DoingSomething;
 
@@ -73,23 +77,24 @@ public class Movement : MonoBehaviour {
         DoingSomething = true;
     }
 
-    public void SetValues(bool inputMoveRight, bool inputMoveLeft, bool Jump, bool attacking = false, bool bloodAttack = false, bool heal = false) {
+    public void SetValues(bool inputMoveRight, bool inputMoveLeft, bool Jump, bool attacking = false, bool bloodAttack = false, bool heal = false, bool teleport = false) {
         this.inputMoveRight = inputMoveRight;
         this.inputMoveLeft = inputMoveLeft;
         this.Jump |= Jump;
         this.attacking |= attacking;
         this.bloodAttack |= bloodAttack;
-        this.heal = heal;
+        this.heal |= heal;
+        this.teleport |= teleport;
         if (DoingSomething) {
             this.attacking = false;
             this.heal = false;
             this.bloodAttack = false;
+            this.teleport = false;
         }
     }
 
     // Update is called once per frame
     void Update() {
-
         if (Dead) {
             return;
         }
@@ -114,6 +119,23 @@ public class Movement : MonoBehaviour {
                 // Trigger not enough blood sound.
             }
             heal = false;
+        } else if (teleport) {
+            if (bloodmanager.TryToSpendBlood(10)) {
+                DoingSomething = true;
+                animator.SetTrigger("Teleport");
+            } else {
+                // Trigger not enough blood sound.
+            }
+            teleport = false;
+        }
+    }
+
+    public void Teleport() {
+        var cast = Physics2D.BoxCast(this.transform.position, new Vector2(.15f, .5f), 0, FacingRight? Vector2.right : Vector2.left, TeleDist, LayerMask.GetMask("Level"));
+        if (!cast) {
+            this.transform.position = this.transform.position + (FacingRight ? Vector3.right : Vector3.left) * TeleDist;
+        } else {
+            this.transform.position = cast.centroid;
         }
     }
 

@@ -20,12 +20,13 @@ public class PlayerController : KillableActor {
         bool Jump = Input.GetKeyDown(KeyCode.Space);
         bool attacking = Input.GetKeyDown(KeyCode.F);
 
-        bool bloodAttack = Input.GetKeyDown(KeyCode.D);
+        bool bloodAttack = Input.GetKeyDown(KeyCode.Q);
         
-        bool heal = Input.GetKeyDown(KeyCode.G);
+        bool heal = Input.GetKeyDown(KeyCode.E);
+        bool teleport = Input.GetKeyDown(KeyCode.W);
 
 
-        movement.SetValues(inputMoveRight, inputMoveLeft, Jump, attacking, bloodAttack, heal);
+        movement.SetValues(inputMoveRight, inputMoveLeft, Jump, attacking, bloodAttack, heal, teleport);
         
     }
 }
