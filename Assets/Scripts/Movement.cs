@@ -33,6 +33,21 @@ public class Movement : MonoBehaviour {
     [SerializeField]
     AudioSource JumpSound;
 
+    [SerializeField]
+    AudioSource attackSound;
+
+    [SerializeField]
+    AudioSource HurtSound;
+
+    [SerializeField]
+    AudioSource HealSound;
+
+    [SerializeField]
+    AudioSource bloodMagicSound;
+
+    [SerializeField]
+    AudioSource teleportMagicSound;
+
     private float LastJumpTime;
     
     bool Dead;
@@ -130,6 +145,7 @@ public class Movement : MonoBehaviour {
         } else if (attacking) {
             DoingSomething = true;
             animator.SetTrigger("Attack");
+            attackSound.Play();
             attacking = false;
         } else if (heal) {
             if (health.getHealth() < 6 && bloodmanager.TryToSpendBlood(50)) {
