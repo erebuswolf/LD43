@@ -72,7 +72,12 @@ public class Movement : MonoBehaviour {
         DoingSomething = false;
         attacking = false;
     }
-    
+
+    public void SetVals(float MAX_XVEL, float WALK_FORCE) {
+        this.MAX_XVEL = MAX_XVEL;
+        this.WALK_FORCE = WALK_FORCE;
+    }
+
     public void StartAttack() {
         DoingSomething = true;
     }

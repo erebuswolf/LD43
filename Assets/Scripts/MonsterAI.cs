@@ -5,15 +5,15 @@ using UnityEngine;
 public class MonsterAI : AiControllerBase {
 
     [SerializeField]
-    float AggroRange;
-
-
+    public float AggroRange;
+    
     [SerializeField]
     GameObject Target;
 
     [SerializeField]
-    float Eps;
+    public float Eps;
 
+    Animator animator;
 
     float randTime;
     bool randMoveRight;
@@ -21,7 +21,8 @@ public class MonsterAI : AiControllerBase {
 	// Use this for initialization
 	new void Start () {
         base.Start();
-	}
+        animator = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     new void Update() {

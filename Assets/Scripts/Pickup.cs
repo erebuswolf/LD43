@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Pickup : MonoBehaviour {
 
-    Animator animator;
+    protected Animator animator;
 
 	// Use this for initialization
 	protected void Start () {

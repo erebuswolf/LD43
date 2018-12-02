@@ -38,7 +38,7 @@ public class BloodPickup : MonoBehaviour {
                 return;
             }
             pickedup = true;
-            SendMessageUpwards("BloodPickedUp");
+            SendMessageUpwards("BloodPickedUp", SendMessageOptions.DontRequireReceiver);
         }
     }
 

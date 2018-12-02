@@ -232,7 +232,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1165794058898272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.506, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4130998098594534}
@@ -498,6 +498,7 @@ MonoBehaviour:
   GroundCheck: {fileID: 61951456659120544}
   JumpCheck: {fileID: 61890535209809472}
   JumpCD: 0.5
+  TeleDist: 0
 --- !u!114 &114198400510580940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -547,7 +548,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActivationDistance: 5
-  AggroRange: 2
+  AggroRange: 3
+  Target: {fileID: 0}
   Eps: 0.8
 --- !u!114 &114551784306014822
 MonoBehaviour:

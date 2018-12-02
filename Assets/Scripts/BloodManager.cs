@@ -29,8 +29,16 @@ public class BloodManager : MonoBehaviour {
         if (CurrentBloodAmount > bloodVialCount * 100) {
             CurrentBloodAmount = bloodVialCount * 100;
         }
+
+        CheckBloodMaxed();
         UpdateUI();
         return true;
+    }
+
+    private void CheckBloodMaxed() {
+        if (CurrentBloodAmount == bloodVialCount * 100) {
+            SendMessageUpwards("BloodMaxed", SendMessageOptions.DontRequireReceiver);
+        }
     }
 
     private void UpdateUI() {
@@ -83,6 +91,8 @@ public class BloodManager : MonoBehaviour {
         if (!OnAI) {
             bloodUI = FindObjectOfType<BloodUI>();
             UpdateUI();
+        } else {
+            CheckBloodMaxed();
         }
 
     }
