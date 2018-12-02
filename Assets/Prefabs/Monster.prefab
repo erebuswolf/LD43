@@ -548,7 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActivationDistance: 5
   AggroRange: 2
-  Eps: 1
+  Eps: 0.8
 --- !u!114 &114551784306014822
 MonoBehaviour:
   m_ObjectHideFlags: 1

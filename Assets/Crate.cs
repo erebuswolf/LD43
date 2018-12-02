@@ -10,7 +10,7 @@ public class Crate : KillableActor {
 	}
 	
 	// Update is called once per frame
-	new void Update () {
+	void Update () {
         base.Start();
 	}
 }
