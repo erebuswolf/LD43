@@ -9,10 +9,6 @@ public class PlayerController : KillableActor {
         movement = this.GetComponent<Movement>();
     }
 	
-    public void Damaged() {
-
-    }
-
 	// Update is called once per frame
 	void Update () {
         bool inputMoveRight = Input.GetKey(KeyCode.RightArrow);
@@ -20,10 +16,10 @@ public class PlayerController : KillableActor {
         bool Jump = Input.GetKeyDown(KeyCode.Space);
         bool attacking = Input.GetKeyDown(KeyCode.F);
 
-        bool bloodAttack = Input.GetKeyDown(KeyCode.Q);
+        bool bloodAttack = Input.GetKeyDown(KeyCode.D);
         
-        bool heal = Input.GetKeyDown(KeyCode.E);
-        bool teleport = Input.GetKeyDown(KeyCode.W);
+        bool heal = Input.GetKeyDown(KeyCode.A);
+        bool teleport = Input.GetKeyDown(KeyCode.S);
 
 
         movement.SetValues(inputMoveRight, inputMoveLeft, Jump, attacking, bloodAttack, heal, teleport);

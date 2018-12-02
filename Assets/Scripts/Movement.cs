@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour {
 
     [SerializeField]
     float JumpCD;
-    
+
     [SerializeField]
     float TeleDist;
 
@@ -65,6 +65,13 @@ public class Movement : MonoBehaviour {
         if(!Dead) {
             animator.SetTrigger("Flinch");
             myBody.AddForce((this.transform.position - position).normalized * 100);
+        }
+    }
+    
+    public void BigDamaged(Vector3 position) {
+        if (!Dead) {
+            animator.SetTrigger("Flinch");
+            myBody.AddForce((this.transform.position - position).normalized * 200);
         }
     }
 

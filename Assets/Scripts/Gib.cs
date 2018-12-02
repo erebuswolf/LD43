@@ -18,6 +18,9 @@ public class Gib : KillableActor {
 	}
     
     public void Damaged(Vector3 position) {
-        myBody.AddForceAtPosition((this.transform.position - position).normalized * 120, position);
+        myBody.AddForceAtPosition((this.transform.position - position).normalized * 100, position);
+    }
+    public void BigDamaged(Vector3 position) {
+        myBody.AddForceAtPosition((this.transform.position - position).normalized * 150, position);
     }
 }

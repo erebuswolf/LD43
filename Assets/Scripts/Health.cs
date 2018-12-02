@@ -27,7 +27,12 @@ public class Health : MonoBehaviour {
             }
         }
 
-        SendMessageUpwards("Damaged", position,SendMessageOptions.DontRequireReceiver);
+        if(Damage >= 3) {
+            SendMessageUpwards("BigDamaged", position, SendMessageOptions.DontRequireReceiver);
+        } else {
+            SendMessageUpwards("Damaged", position, SendMessageOptions.DontRequireReceiver);
+        }
+        
         if (healthBar) {
             healthBar.SetHealth(CurrentHealth, CurrentDarkHealth);
         }
