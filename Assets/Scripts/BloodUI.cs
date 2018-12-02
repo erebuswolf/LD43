@@ -9,7 +9,8 @@ public class BloodUI : MonoBehaviour {
     [SerializeField]
     GameObject FullBloodSprite;
 
-    const float bloodOffset = .02f;
+    [SerializeField]
+    float bloodOffset = .02f;
 
     List<GameObject> BloodSprites = new List<GameObject>();
 
@@ -41,6 +42,10 @@ public class BloodUI : MonoBehaviour {
         if (Value == 0) {
         } else if (Value == 100) {
             FullBloodSprite.SetActive(true);
+
+            for (int i = 0; i < BloodSprites.Count; i++) {
+                BloodSprites[i].SetActive(true);
+            }
         } else {
             OneBloodSprite.SetActive(true);
             for (int i = 0; i < Value-1; i++) {

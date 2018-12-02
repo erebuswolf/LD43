@@ -360,6 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OneBloodSprite: {fileID: 212045592}
   FullBloodSprite: {fileID: 1997038077}
+  bloodOffset: 0.015
 --- !u!1 &212045592
 GameObject:
   m_ObjectHideFlags: 0
