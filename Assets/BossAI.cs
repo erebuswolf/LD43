@@ -28,12 +28,12 @@ public class BossAI : MonoBehaviour {
     [SerializeField]
     List<GameObject> Spawns;
 
+    bool Dead;
+
     // State 0, wait for player to get on platform.
     // player gets on platform, platform rises
     // player attacks boss, boss reacts. pull arm away.
-
-
-
+    
     // state 1,4,7  summons wave 1 
     // state 2, attacks
     // state 3, wait for player to get on platform and repeat.
@@ -47,7 +47,6 @@ public class BossAI : MonoBehaviour {
     public void AdvanceBossState() {
         bossState++;
         bossState %= 3;
-        Debug.LogWarningFormat("advancing boss state {0}", bossState);
         startedWave = false;
     }
 
@@ -59,6 +58,9 @@ public class BossAI : MonoBehaviour {
     bool startedWave = false;
 	// Update is called once per frame
 	void Update () {
+        if (Dead) {
+            return;
+        }
 
         var baseinfo = animator.GetCurrentAnimatorStateInfo(0);
         var eyeinfo = animator.GetCurrentAnimatorStateInfo(1);
@@ -221,7 +223,6 @@ public class BossAI : MonoBehaviour {
 
     IEnumerator DamagedReact() {
         yield return new WaitForSeconds(1);
-        Debug.LogWarning("reacted to damage");
         AdvanceBossState();
         animator.SetTrigger("PlatformOut");
 
@@ -232,7 +233,11 @@ public class BossAI : MonoBehaviour {
     }
 
     public void Death() {
-
+        animator.SetLayerWeight(1, 0);
+        animator.SetLayerWeight(2, 0);
+        animator.SetTrigger("Death");
+        Dead = true;
+        StopAllCoroutines();
     }
 
     public void PlayerOnPlat() {
