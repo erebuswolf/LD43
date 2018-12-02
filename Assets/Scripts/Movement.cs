@@ -59,6 +59,7 @@ public class Movement : MonoBehaviour {
     
     public void Damaged(Vector3 position) {
         if(!Dead) {
+            animator.SetTrigger("Flinch");
             myBody.AddForce((this.transform.position - position).normalized * 100);
         }
     }
