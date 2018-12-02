@@ -50,6 +50,10 @@ public class MonsterAI : AiControllerBase {
         sounds[0].Play();
     }
 
+    void PlayattackSound() {
+        sounds[1].Play();
+    }
+
     void MoveRandom() {
         if (randTime < Time.time) {
             randMoveRight = Random.Range(0, 2) == 0;

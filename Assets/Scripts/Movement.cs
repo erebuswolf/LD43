@@ -48,6 +48,9 @@ public class Movement : MonoBehaviour {
     [SerializeField]
     AudioSource teleportMagicSound;
 
+    [SerializeField]
+    AudioSource DeathSoundSound;
+
     private float LastJumpTime;
     
     bool Dead;
@@ -86,6 +89,9 @@ public class Movement : MonoBehaviour {
     
     public void Damaged(Vector3 position) {
         if(!Dead) {
+            if(HurtSound) {
+                HurtSound.Play();
+            }
             animator.SetTrigger("Flinch");
             DamageForceToAdd = (this.transform.position - position).normalized * 120;
         }
@@ -93,6 +99,9 @@ public class Movement : MonoBehaviour {
     
     public void BigDamaged(Vector3 position) {
         if (!Dead) {
+            if (HurtSound) {
+                HurtSound.Play();
+            }
             animator.SetTrigger("Flinch");
             DamageForceToAdd = (this.transform.position - position).normalized * 200;
         }
@@ -138,6 +147,9 @@ public class Movement : MonoBehaviour {
             if (bloodmanager.TryToSpendBlood(60)) {
                 DoingSomething = true;
                 animator.SetTrigger("BloodAttack");
+                if (bloodMagicSound) {
+                    bloodMagicSound.Play();
+                }
             } else {
                 // Trigger not enough blood sound.
             }
@@ -145,11 +157,16 @@ public class Movement : MonoBehaviour {
         } else if (attacking) {
             DoingSomething = true;
             animator.SetTrigger("Attack");
-            attackSound.Play();
+            if(attackSound) {
+                attackSound.Play();
+            }
             attacking = false;
         } else if (heal) {
             if (health.getHealth() < 6 && bloodmanager.TryToSpendBlood(50)) {
                 DoingSomething = true;
+                if (HealSound) {
+                    HealSound.Play();
+                }
                 animator.SetTrigger("Heal");
             } else {
                 // Trigger not enough blood sound.
@@ -158,6 +175,9 @@ public class Movement : MonoBehaviour {
         } else if (teleport) {
             if (bloodmanager.TryToSpendBlood(10)) {
                 DoingSomething = true;
+                if (teleportMagicSound) {
+                    teleportMagicSound.Play();
+                }
                 animator.SetTrigger("Teleport");
             } else {
                 // Trigger not enough blood sound.
