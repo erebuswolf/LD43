@@ -116,7 +116,7 @@ public class Movement : MonoBehaviour {
         }
         // Logic to determine AI actions
         if (bloodAttack) {
-            if (bloodmanager.TryToSpendBlood(30)) {
+            if (bloodmanager.TryToSpendBlood(60)) {
                 DoingSomething = true;
                 animator.SetTrigger("BloodAttack");
             } else {

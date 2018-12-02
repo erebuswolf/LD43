@@ -32,7 +32,9 @@ public class BossAI : MonoBehaviour {
     // player gets on platform, platform rises
     // player attacks boss, boss reacts. pull arm away.
 
-    // state 1, summons wave 1
+
+
+    // state 1,4,7  summons wave 1 
     // state 2, attacks
     // state 3, wait for player to get on platform and repeat.
 
@@ -40,32 +42,58 @@ public class BossAI : MonoBehaviour {
 
     int bossState = 0;
 
+    int waveSummoned = 0;
+
+    public void AdvanceBossState() {
+        bossState++;
+        bossState %= 3;
+        Debug.LogWarningFormat("advancing boss state {0}", bossState);
+        startedWave = false;
+    }
 
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
     }
-	
+
+    bool startedWave = false;
 	// Update is called once per frame
 	void Update () {
+
         var baseinfo = animator.GetCurrentAnimatorStateInfo(0);
         var eyeinfo = animator.GetCurrentAnimatorStateInfo(1);
         var platforminfo = animator.GetCurrentAnimatorStateInfo(2);
+
         switch (bossState) {
             case 0:
-                if (platforminfo.IsName("EyeIdle") && PlayerOnPlatform) {
-                    animator.SetTrigger("PlatformUp");
-                } else if (!PlayerOnPlatform) {
-                    if(platforminfo.IsName("PlatformLift")) {
-                        animator.SetTrigger("PlatformOut");
-                    } else if (platforminfo.IsName("PlatformLower")) {
-                        animator.SetTrigger("PlatformReset");
+                enticePlayer();
+                break;
+            case 1:
+                if (!startedWave) {
+                    startedWave = true;
+                    switch(waveSummoned) {
+                        case 0:
+                            StartCoroutine(SpawnWave1());
+                            break;
+                        case 1:
+                            StartCoroutine(SpawnWave2());
+                            break;
+                        default:
+                            StartCoroutine(SpawnWave3());
+                            break;
                     }
+                    waveSummoned++;
+                }
+                break;
+            case 2:
+                if(!startedWave) {
+                    Attack();
                 }
                 break;
             default:
                 break;
         }
+
         // Decide Between Platform raising, enemy summoning, and attacking.
         if(baseinfo.IsName("bossIdle")) {
 
@@ -74,46 +102,97 @@ public class BossAI : MonoBehaviour {
             }
         }
         
-
         if (platforminfo.IsName("EyeIdle")) {
             RandomBlink();
         } 
     }
-    
-    IEnumerable SpawnWave1() {
+
+    void Attack() {
+        startedWave = true;
+        animator.SetTrigger("Attack");
+        animator.SetBool("ProtectEye", false);
+    }
+
+    void enticePlayer() {
+        var baseinfo = animator.GetCurrentAnimatorStateInfo(0);
+        var eyeinfo = animator.GetCurrentAnimatorStateInfo(1);
+        var platforminfo = animator.GetCurrentAnimatorStateInfo(2);
+        if (platforminfo.IsName("EyeIdle") && PlayerOnPlatform) {
+            animator.SetTrigger("PlatformUp");
+        } else if (!PlayerOnPlatform) {
+            if (platforminfo.IsName("PlatformLift")) {
+                animator.SetTrigger("PlatformOut");
+            } else if (platforminfo.IsName("PlatformLower")) {
+                animator.SetTrigger("PlatformReset");
+            }
+        }
+    }
+
+    IEnumerator SpawnWave1() {
         // 5 Blood 2 basic Enemies;
-        Instantiate(BloodPickup, Spawns[6].transform);
-        Instantiate(BloodPickup, Spawns[5].transform);
-        Instantiate(Innocent, Spawns[4].transform);
-        Instantiate(BloodPickup, Spawns[2].transform);
-        Instantiate(Innocent, Spawns[1].transform);
         yield return new WaitForSeconds(2);
-        Instantiate(enemyBasic, Spawns[0].transform);
-        Instantiate(enemyBasic, Spawns[3].transform);
+        GameObject obj = Instantiate(BloodPickup);
+        obj.transform.position = Spawns[6].transform.position;
+        obj = Instantiate(BloodPickup);
+        obj.transform.position = Spawns[5].transform.position;
+        obj = Instantiate(Innocent);
+        obj.transform.position = Spawns[4].transform.position;
+        obj = Instantiate(BloodPickup);
+        obj.transform.position = Spawns[2].transform.position;
+        obj = Instantiate(Innocent);
+        obj.transform.position = Spawns[1].transform.position;
+        yield return new WaitForSeconds(2);
+        obj = Instantiate(enemyBasic);
+        obj.transform.position = Spawns[0].transform.position;
+        obj = Instantiate(enemyBasic);
+        obj.transform.position = Spawns[3].transform.position;
+        yield return new WaitForSeconds(2);
+        AdvanceBossState();
     }
 
-    IEnumerable SpawnWave2() {
+    IEnumerator SpawnWave2() {
+        yield return new WaitForSeconds(2);
         // 3 Blood 2 heart 2 Enemies (1 basic one advanced);
-        Instantiate(HeartPickup, Spawns[6].transform);
-        Instantiate(EnemyAdvanced, Spawns[5].transform);
-        Instantiate(Innocent, Spawns[4].transform);
-        Instantiate(Innocent, Spawns[2].transform);
-        Instantiate(HeartPickup, Spawns[1].transform);
+        GameObject obj = Instantiate(HeartPickup);
+        obj.transform.position = Spawns[6].transform.position;
+
+        obj = Instantiate(EnemyAdvanced);
+        obj.transform.position = Spawns[5].transform.position;
+        obj = Instantiate(Innocent);
+        obj.transform.position = Spawns[4].transform.position;
+        obj = Instantiate(Innocent);
+        obj.transform.position = Spawns[2].transform.position;
+        obj = Instantiate(HeartPickup);
+        obj.transform.position = Spawns[1].transform.position;
         yield return new WaitForSeconds(2);
-        Instantiate(enemyBasic, Spawns[0].transform);
-        Instantiate(BloodPickup, Spawns[3].transform);
+        obj = Instantiate(enemyBasic);
+        obj.transform.position = Spawns[0].transform.position;
+        obj = Instantiate(BloodPickup);
+        obj.transform.position = Spawns[3].transform.position;
+        yield return new WaitForSeconds(2);
+        AdvanceBossState();
     }
 
-    IEnumerable SpawnWave3() {
-        // 2 heart 3 Blood 2 Enemies (2 advanced);
-        Instantiate(HeartPickup, Spawns[6].transform);
-        Instantiate(Innocent, Spawns[5].transform);
-        Instantiate(Innocent, Spawns[4].transform);
-        Instantiate(EnemyAdvanced, Spawns[2].transform);
-        Instantiate(HeartPickup, Spawns[1].transform);
+    IEnumerator SpawnWave3() {
         yield return new WaitForSeconds(2);
-        Instantiate(BloodPickup, Spawns[0].transform);
-        Instantiate(EnemyAdvanced, Spawns[3].transform);
+        // 2 heart 3 Blood 2 Enemies (2 advanced);
+        GameObject obj = Instantiate(HeartPickup);
+        obj.transform.position = Spawns[6].transform.position;
+        obj = Instantiate(Innocent);
+        obj.transform.position = Spawns[5].transform.position;
+        obj = Instantiate(Innocent);
+        obj.transform.position = Spawns[4].transform.position;
+        obj = Instantiate(EnemyAdvanced);
+        obj.transform.position = Spawns[2].transform.position;
+        obj = Instantiate(HeartPickup);
+        obj.transform.position = Spawns[1].transform.position;
+        yield return new WaitForSeconds(2);
+        obj = Instantiate(BloodPickup);
+        obj.transform.position = Spawns[0].transform.position;
+        obj = Instantiate(EnemyAdvanced);
+        obj.transform.position = Spawns[3].transform.position;
+        yield return new WaitForSeconds(2);
+        AdvanceBossState();
     }
 
     public void RandomBlink() {
@@ -122,13 +201,34 @@ public class BossAI : MonoBehaviour {
             BlinkTime = Time.time + 4 + Random.value * 10;
         }
     }
-
+    
+    bool reactingToDamage = false;
     public void BigDamaged() {
-
+        animator.SetTrigger("Flinch");
+        if (!reactingToDamage) {
+            reactingToDamage = true;
+            StartCoroutine(DamagedReact());
+        }
     }
     
     public void Damaged() {
+        animator.SetTrigger("Flinch");
+        if (!reactingToDamage) {
+            reactingToDamage = true;
+            StartCoroutine(DamagedReact());
+        }
+    }
 
+    IEnumerator DamagedReact() {
+        yield return new WaitForSeconds(1);
+        Debug.LogWarning("reacted to damage");
+        AdvanceBossState();
+        animator.SetTrigger("PlatformOut");
+
+        animator.SetBool("ProtectEye", true);
+
+        yield return new WaitForSeconds(1);
+        reactingToDamage = false;
     }
 
     public void Death() {
@@ -136,11 +236,9 @@ public class BossAI : MonoBehaviour {
     }
 
     public void PlayerOnPlat() {
-        Debug.LogWarning("on plat");
         PlayerOnPlatform = true;
     }
     public void PlayerOffPlat() {
         PlayerOnPlatform = false;
-        Debug.LogWarning("off plat");
     }
 }
