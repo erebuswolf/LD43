@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterAI : AiControllerBase {
-
+    [SerializeField]
+    List<AudioSource> sounds;
+    
     [SerializeField]
     public float AggroRange;
     
@@ -42,6 +44,10 @@ public class MonsterAI : AiControllerBase {
         } else {
             MoveRandom();
         }
+    }
+
+    void PlayPsycicSound() {
+        sounds[0].Play();
     }
 
     void MoveRandom() {

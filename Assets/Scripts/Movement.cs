@@ -29,6 +29,10 @@ public class Movement : MonoBehaviour {
     [SerializeField]
     float TeleDist;
 
+
+    [SerializeField]
+    AudioSource JumpSound;
+
     private float LastJumpTime;
     
     bool Dead;
@@ -192,6 +196,7 @@ public class Movement : MonoBehaviour {
             if (grounded) {
                 LastJumpTime = Time.time;
                 myBody.AddForce(new Vector2(0, JUMP_FORCE));
+                JumpSound.Play();
             }
             Jump = false;
         }
