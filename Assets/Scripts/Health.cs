@@ -72,6 +72,9 @@ public class Health : MonoBehaviour {
         if (healthBar) {
             healthBar.SetHealth(CurrentHealth, CurrentDarkHealth);
         }
+        if (CurrentDarkHealth == 0 && CurrentHealth == 0) {
+            TriggerDeath();
+        }
     }
 	
 	// Update is called once per frame
