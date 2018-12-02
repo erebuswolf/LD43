@@ -9,6 +9,9 @@ public class BossAI : MonoBehaviour {
 
     [SerializeField]
     float BlinkTime = 0;
+    
+    [SerializeField]
+    List<AudioSource> sounds;
 
     [SerializeField]
     GameObject enemyBasic;
@@ -61,8 +64,7 @@ public class BossAI : MonoBehaviour {
         if (Dead) {
             return;
         }
-
-
+        
         switch (bossState) {
             case 0:
                 enticePlayer();
@@ -107,8 +109,14 @@ public class BossAI : MonoBehaviour {
             RandomBlink();
         } 
     }
+    
+    void playImpact() {
+        sounds[3].Play();
+    }
 
     void Attack() {
+        sounds[1].Play();
+
         startedWave = true;
         animator.SetTrigger("Attack");
         animator.SetBool("ProtectEye", false);
@@ -132,6 +140,8 @@ public class BossAI : MonoBehaviour {
     IEnumerator SpawnWave1() {
         // 5 Blood 2 basic Enemies;
         yield return new WaitForSeconds(2);
+
+        sounds[1].Play();
         GameObject obj = Instantiate(BloodPickup);
         obj.transform.position = Spawns[6].transform.position;
         obj = Instantiate(BloodPickup);
@@ -149,10 +159,14 @@ public class BossAI : MonoBehaviour {
         obj.transform.position = Spawns[3].transform.position;
         yield return new WaitForSeconds(2);
         AdvanceBossState();
+
+        sounds[1].Play();
     }
 
     IEnumerator SpawnWave2() {
         yield return new WaitForSeconds(2);
+
+        sounds[1].Play();
         // 3 Blood 2 heart 2 Enemies (1 basic one advanced);
         GameObject obj = Instantiate(HeartPickup);
         obj.transform.position = Spawns[6].transform.position;
@@ -172,10 +186,14 @@ public class BossAI : MonoBehaviour {
         obj.transform.position = Spawns[3].transform.position;
         yield return new WaitForSeconds(2);
         AdvanceBossState();
+
+        sounds[1].Play();
     }
 
     IEnumerator SpawnWave3() {
         yield return new WaitForSeconds(2);
+
+        sounds[1].Play();
         // 2 heart 3 Blood 2 Enemies (2 advanced);
         GameObject obj = Instantiate(HeartPickup);
         obj.transform.position = Spawns[6].transform.position;
@@ -194,6 +212,8 @@ public class BossAI : MonoBehaviour {
         obj.transform.position = Spawns[3].transform.position;
         yield return new WaitForSeconds(2);
         AdvanceBossState();
+
+        sounds[1].Play();
     }
 
     public void RandomBlink() {
@@ -205,6 +225,12 @@ public class BossAI : MonoBehaviour {
     
     bool reactingToDamage = false;
     public void BigDamaged() {
+        if (Dead) {
+            return;
+        }
+        if (!sounds[2].isPlaying) {
+            sounds[2].Play();
+        }
         animator.SetTrigger("Flinch");
         if (!reactingToDamage) {
             reactingToDamage = true;
@@ -213,6 +239,12 @@ public class BossAI : MonoBehaviour {
     }
     
     public void Damaged() {
+        if (Dead) {
+            return;
+        }
+        if (!sounds[2].isPlaying) {
+            sounds[2].Play();
+        }
         animator.SetTrigger("Flinch");
         if (!reactingToDamage) {
             reactingToDamage = true;
@@ -230,13 +262,20 @@ public class BossAI : MonoBehaviour {
         yield return new WaitForSeconds(1);
         reactingToDamage = false;
     }
-
+   
     public void Death() {
+        if (Dead) {
+            return;
+        }
+        sounds[0].Play();
         animator.SetLayerWeight(1, 0);
         animator.SetLayerWeight(2, 0);
         animator.SetTrigger("Death");
+
         Dead = true;
         StopAllCoroutines();
+
+        //Show win screen.
     }
 
     public void PlayerOnPlat() {
