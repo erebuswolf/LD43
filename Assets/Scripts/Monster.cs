@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Monster : KillableActor {
-    
+
+    [SerializeField]
+    RuntimeAnimatorController controller;
+
 	// Use this for initialization
 	new void Start () {
         base.Start();
@@ -30,6 +33,11 @@ public class Monster : KillableActor {
 
         var animator = GetComponent<Animator>();
         animator.SetLayerWeight(1, 1);
+        animator.SetTrigger("Transform");
+        animator.runtimeAnimatorController = controller;
+
+        var health = GetComponent<Health>();
+        health.AddDarkHealth(6);
     }
 
     void PushAway () {
