@@ -34,6 +34,7 @@ public class Movement : MonoBehaviour {
     bool Dead;
 
     Animator animator;
+    Health health;
 
     Rigidbody2D myBody;
 
@@ -57,6 +58,7 @@ public class Movement : MonoBehaviour {
         myBody = this.GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
         bloodmanager = this.GetComponent<BloodManager>();
+        health = this.GetComponent<Health>();
     }
 
     public void Death() {
@@ -126,7 +128,7 @@ public class Movement : MonoBehaviour {
             animator.SetTrigger("Attack");
             attacking = false;
         } else if (heal) {
-            if (bloodmanager.TryToSpendBlood(50)) {
+            if (health.getHealth() < 6 && bloodmanager.TryToSpendBlood(50)) {
                 DoingSomething = true;
                 animator.SetTrigger("Heal");
             } else {

@@ -11,7 +11,7 @@ public class Health : MonoBehaviour {
     int CurrentDarkHealth;
 
     HealthBar healthBar;
-    
+
     public void ApplyDamage(int Damage, Vector3 position) {
 
         if (Damage >= 3) {
@@ -38,7 +38,11 @@ public class Health : MonoBehaviour {
             healthBar.SetHealth(CurrentHealth, CurrentDarkHealth);
         }
     }
-    
+
+    public int getHealth() {
+        return CurrentHealth;
+    }
+
     public void HealSetAmnt() {
         HealHealth(2);
     }
