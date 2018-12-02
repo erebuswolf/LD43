@@ -821,49 +821,40 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4130998098594534, guid: 0396f6d823f7eb94582e41f0c00a8bbc, type: 2}
+    - target: {fileID: 4933444202089302, guid: 4a740a6adb3417f4f8f5d60111e605ef, type: 2}
       propertyPath: m_LocalPosition.x
       value: 81.85482
       objectReference: {fileID: 0}
-    - target: {fileID: 4130998098594534, guid: 0396f6d823f7eb94582e41f0c00a8bbc, type: 2}
+    - target: {fileID: 4933444202089302, guid: 4a740a6adb3417f4f8f5d60111e605ef, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0.86
       objectReference: {fileID: 0}
-    - target: {fileID: 4130998098594534, guid: 0396f6d823f7eb94582e41f0c00a8bbc, type: 2}
+    - target: {fileID: 4933444202089302, guid: 4a740a6adb3417f4f8f5d60111e605ef, type: 2}
       propertyPath: m_LocalPosition.z
       value: -0.05859375
       objectReference: {fileID: 0}
-    - target: {fileID: 4130998098594534, guid: 0396f6d823f7eb94582e41f0c00a8bbc, type: 2}
+    - target: {fileID: 4933444202089302, guid: 4a740a6adb3417f4f8f5d60111e605ef, type: 2}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4130998098594534, guid: 0396f6d823f7eb94582e41f0c00a8bbc, type: 2}
+    - target: {fileID: 4933444202089302, guid: 4a740a6adb3417f4f8f5d60111e605ef, type: 2}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4130998098594534, guid: 0396f6d823f7eb94582e41f0c00a8bbc, type: 2}
+    - target: {fileID: 4933444202089302, guid: 4a740a6adb3417f4f8f5d60111e605ef, type: 2}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 4130998098594534, guid: 0396f6d823f7eb94582e41f0c00a8bbc, type: 2}
+    - target: {fileID: 4933444202089302, guid: 4a740a6adb3417f4f8f5d60111e605ef, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4130998098594534, guid: 0396f6d823f7eb94582e41f0c00a8bbc, type: 2}
+    - target: {fileID: 4933444202089302, guid: 4a740a6adb3417f4f8f5d60111e605ef, type: 2}
       propertyPath: m_RootOrder
       value: 19
       objectReference: {fileID: 0}
-    - target: {fileID: 1766405156853248, guid: 0396f6d823f7eb94582e41f0c00a8bbc, type: 2}
-      propertyPath: m_Name
-      value: Monster (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114746892005753710, guid: 0396f6d823f7eb94582e41f0c00a8bbc,
-        type: 2}
-      propertyPath: CurrentBloodAmount
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0396f6d823f7eb94582e41f0c00a8bbc, type: 2}
+  m_SourcePrefab: {fileID: 100100000, guid: 4a740a6adb3417f4f8f5d60111e605ef, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &369415053
 GameObject:
@@ -963,7 +954,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4701624177680866, guid: 4d2a9a5b37b4ef840bcc95d6f65ad40c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 91.45
+      value: 90.33
       objectReference: {fileID: 0}
     - target: {fileID: 4701624177680866, guid: 4d2a9a5b37b4ef840bcc95d6f65ad40c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2564,22 +2555,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2caaa0845e56974085ddc2f8e44b02d, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1110880707 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1322372314745458, guid: 7dba6d2eb60cf2c45b1f4884b134fd59,
-    type: 2}
-  m_PrefabInternal: {fileID: 1423129423}
---- !u!114 &1110880711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1110880707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8387a6f2d608cbb4bb241bb3d7ed9b66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1198828085
 Prefab:
   m_ObjectHideFlags: 0
@@ -2703,27 +2678,6 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 496763310}
---- !u!1 &1270936797 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1139485813079504, guid: 7dba6d2eb60cf2c45b1f4884b134fd59,
-    type: 2}
-  m_PrefabInternal: {fileID: 1423129423}
---- !u!114 &1270936801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1270936797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e495ec676e46cbc4ca447cf2e2078ba3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyBasic: {fileID: 0}
-  BloodPickup: {fileID: 0}
-  EnemyAdvanced: {fileID: 0}
-  EnemySpawns: []
-  PickupSpawns: []
 --- !u!1001 &1304702390
 Prefab:
   m_ObjectHideFlags: 0
@@ -2972,11 +2926,6 @@ Prefab:
     - target: {fileID: 4006747237339406, guid: 7dba6d2eb60cf2c45b1f4884b134fd59, type: 2}
       propertyPath: m_RootOrder
       value: 31
-      objectReference: {fileID: 0}
-    - target: {fileID: 60996234563850792, guid: 7dba6d2eb60cf2c45b1f4884b134fd59,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dba6d2eb60cf2c45b1f4884b134fd59, type: 2}

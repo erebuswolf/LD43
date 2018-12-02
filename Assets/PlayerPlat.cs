@@ -14,8 +14,16 @@ public class PlayerPlat : MonoBehaviour {
 		
 	}
     private void OnTriggerEnter2D(Collider2D collision) {
-        if(player == collision.transform.root.gameObject) {
+        Debug.LogWarning("triggered thing");
+        if(player.gameObject == collision.transform.root.gameObject) {
+            Debug.LogWarning("was thing");
             SendMessageUpwards("PlayerOnPlat");
         }
     }
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (player.gameObject == collision.transform.root.gameObject) {
+            SendMessageUpwards("PlayerOffPlat");
+        }
+    }
+
 }

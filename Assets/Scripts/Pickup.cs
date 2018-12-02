@@ -8,7 +8,7 @@ public abstract class Pickup : MonoBehaviour {
 
 	// Use this for initialization
 	protected void Start () {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInParent<Animator>();
 
     }
 	
