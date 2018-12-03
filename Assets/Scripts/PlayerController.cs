@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using UnityEngine.SceneManagement;
+
 public class PlayerController : KillableActor {
     Movement movement;
 
@@ -20,7 +22,7 @@ public class PlayerController : KillableActor {
 
     IEnumerator DelayRestart() {
         yield return new WaitForSeconds(2);
-        restarter.gameObject.SetActive(true);
+        SceneManager.LoadScene("LossScreen");
     }
     
     // Update is called once per frame
