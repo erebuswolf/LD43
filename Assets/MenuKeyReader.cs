@@ -18,7 +18,7 @@ public class MenuKeyReader : MonoBehaviour {
         }
         bool start = Input.GetKeyDown(KeyCode.Space);
         if (start) {
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Story");
         }
     }
 }
