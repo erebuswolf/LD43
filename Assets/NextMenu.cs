@@ -13,8 +13,7 @@ public class NextMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
-        if (Input.anyKeyDown) {
+        if (Input.anyKeyDown && Time.timeSinceLevelLoad > 2) {
             SceneManager.LoadScene(nextScene);
         }
     }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement;
+
 public class BossAI : MonoBehaviour {
     Animator animator;
 
@@ -276,6 +278,12 @@ public class BossAI : MonoBehaviour {
         StopAllCoroutines();
 
         //Show win screen.
+        StartCoroutine(endCoroutine());
+    }
+
+    public IEnumerator endCoroutine() {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("WinScreen");
     }
 
     public void PlayerOnPlat() {
